@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 
-const API = process.env.REACT_APP_API_URL;
+const API = 'https://notes-backend-tj1c.onrender.com/api';
 
 console.log("API base from env:", API);
 
