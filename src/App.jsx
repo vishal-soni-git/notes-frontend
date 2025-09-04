@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 
-const API = process.env.REACT_APP_API_URL;
+//const API = process.env.REACT_APP_API_URL;
 
 console.log("API base from env:", API);
 
@@ -12,14 +12,14 @@ function App() {
   const [content, setContent] = useState("");
 
   const fetchNotes = async () => {
-    const res = await fetch(`${API}/notes`);
+    const res = await fetch(`https://notes-backend-tj1c.onrender.com/api/notes`);
     setNotes(await res.json());
   };
 
   useEffect(()=>{ fetchNotes(); }, []);
 
   const createNote = async () => {
-    const res = await fetch(`${API}/notes`, {
+    const res = await fetch(`https://notes-backend-tj1c.onrender.com/api/notes`, {
       method:"POST", headers:{'Content-Type':'application/json'},
       body:JSON.stringify({title, content})
     });
@@ -29,12 +29,12 @@ function App() {
   };
 
   const deleteNote = async (id) => {
-    await fetch(`${API}/notes/${id}`, {method:"DELETE"});
+    await fetch(`https://notes-backend-tj1c.onrender.com/api/notes/${id}`, {method:"DELETE"});
     fetchNotes();
   };
 
   const shareNote = async (id) => {
-    const res = await fetch(`${API}/notes/${id}/share`, {method:"POST"});
+    const res = await fetch(`https://notes-backend-tj1c.onrender.com/api/notes/${id}/share`, {method:"POST"});
     const url = await res.text();
     alert("Share link: " + API.replace("/api","") + url);
   };
